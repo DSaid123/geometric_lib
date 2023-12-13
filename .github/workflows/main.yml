@@ -1,0 +1,37 @@
+name: Unit tests
+
+on:
+  push:
+    branches:
+      - cicd_408538
+  pull_request:
+    branches:
+      - cicd_408538
+
+  permission:
+    contents: read
+
+jobs:
+  tests-for-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository for checkout
+        uses: actions/checkout@v2
+      - name: Install python for check
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+      - name: Run tests
+        run: python -m unittest
+        
+  tests-for-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Clone repository for checkout
+        uses: actions/checkout@v2
+      - name: Install python for check
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+      - name: Run tests
+        run: python -m unittest
