@@ -1,39 +1,51 @@
-import unittest
+import unittest,random
 
-from circle import area as circle_area, perimeter as circle_perimeter
+from circle import *
 from square import area as square_area, perimeter as square_perimeter
 from rectangle import area as rectangle_area, perimeter as rectangle_perimeter
 from triangle import area as triangle_area, perimeter as triangle_perimeter
 
 
-class TestCircle(unittest.TestCase):
+class CircleTestCase(unittest.TestCase):
     def test_zero_area(self):
-        res1 = circle_area(2.5)
-        self.assertEqual(res1, 19.634954084)
-    def test_negative(self):
-       with self.assertRaises(TypeError):
-            circle_area(-5)
+        res = area(0)
+        self.assertAlmostEqual(res, 0, delta=0.1)
 
-    def test_small_area(self):
-        res2 = circle_area(-5)
-        self.assertEqual(res2, 78.53981633974483)
+    def test_small_numbers_area(self):
+        res = area(15)
+        self.assertAlmostEqual(res, 706.86, delta=0.1)
 
-    def test_large_area(self):
-        res3 = circle_area(10)
-        self.assertEqual(res3, 314.1592653589793)
+    def test_big_numbers_area(self):
+        res = area(6173390)
+        self.assertAlmostEqual(res, 119728433662581.97, delta=0.1)
 
-    def test_small_perimeter(self):
-        res4 = circle_perimeter(5.5)
-        self.assertEqual(res4, 34.55751918948772)
-
-    def test_large_perimeter(self):
-        res5 = circle_perimeter(75)
-        self.assertEqual(res5, 471.23889803846896)
     def test_negative(self):
         with self.assertRaises(TypeError):
-            circle_perimeter(-7)
+            area(-9)
 
+    def test_float_area(self):
+        res = area(913.8172)
+        self.assertAlmostEqual(res, 2623424.2, delta=0.1)
 
+    def test_zero_perim(self):
+        res = perimeter(0)
+        self.assertAlmostEqual(res, 0, delta=0.1)
+
+    def test_small_numbers_perim(self):
+        res = perimeter(15)
+        self.assertAlmostEqual(res, 94.25, delta=0.1)
+
+    def test_big_numbers_perim(self):
+        res = perimeter(6173391)
+        self.assertAlmostEqual(res, 38788559.63, delta=0.1)
+
+    def test_negative(self):
+        with self.assertRaises(TypeError):
+            perimeter(-9)
+
+    def test_float_perim(self):
+        res = perimeter(913.8172)
+        self.assertAlmostEqual(res, 5741.6, delta=0.1)
 
 
 class TestRectangle(unittest.TestCase):
